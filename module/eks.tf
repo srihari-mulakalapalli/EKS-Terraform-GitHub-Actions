@@ -52,6 +52,8 @@ resource "aws_eks_node_group" "ondemand-node" {
 
   node_role_arn = aws_iam_role.eks-nodegroup-role[0].arn
 
+  ami_type = "AL2023_x86_64_STANDARD"
+
   scaling_config {
     desired_size = var.desired_capacity_on_demand
     min_size     = var.min_capacity_on_demand
@@ -82,6 +84,8 @@ resource "aws_eks_node_group" "spot-node" {
   node_group_name = "${var.cluster-name}-spot-nodes"
 
   node_role_arn = aws_iam_role.eks-nodegroup-role[0].arn
+
+  ami_type = "AL2023_x86_64_STANDARD"
 
   scaling_config {
     desired_size = var.desired_capacity_spot
